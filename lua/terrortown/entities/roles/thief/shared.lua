@@ -31,8 +31,10 @@ end
 if SERVER then
   function ROLE:GiveRoleLoadout(ply, isRoleChange)
     if GetConVar("ttt2_thief_announce"):GetBool() then
-      net.Start("ttt2_thief_message")
-      net.Broadcast()
+      timer.Simple(1, function()
+        net.Start("ttt2_thief_message")
+        net.Broadcast()
+      end)
     end
     ply:GetSubRoleData().isPublicRole = GetConVar("ttt2_thief_is_public"):GetBool()
   end
